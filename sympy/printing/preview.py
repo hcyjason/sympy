@@ -5,7 +5,7 @@ import tempfile
 import shutil
 import io
 from io import BytesIO
-
+import sys
 try:
     from subprocess import STDOUT, CalledProcessError, check_output
 except ImportError:
@@ -195,6 +195,7 @@ def preview(expr, output='png', viewer=None, euler=True, packages=(),
             raise RuntimeError("latex program is not installed")
 
         try:
+            STDOUT = sys.stdout
             check_output(['latex', '-halt-on-error', '-interaction=nonstopmode',
                           'texput.tex'], cwd=workdir, stderr=STDOUT)
         except CalledProcessError as e:
