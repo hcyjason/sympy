@@ -202,7 +202,7 @@ def preview(expr, output='png', viewer=None, euler=True, packages=(),
             logger.debug('stdout: '+str(STDOUT))
             logger.debug('workdir: '+str(workdir))
             check_output(['latex', '-halt-on-error', '-interaction=nonstopmode',
-                          'texput.tex'], cwd=workdir, stderr=sys.stdout)
+                          'texput.tex'], cwd=workdir)
         except CalledProcessError as e:
             raise RuntimeError(
                 "'latex' exited abnormally with the following output:\n%s" %
