@@ -19,6 +19,9 @@ from .latex import latex
 
 from sympy.utilities.decorator import doctest_depends_on
 
+import logging
+logger = logging.getLogger(__name__)
+
 @doctest_depends_on(exe=('latex', 'dvipng'), modules=('pyglet',),
             disable_viewers=('evince', 'gimp', 'superior-dvi-viewer'))
 def preview(expr, output='png', viewer=None, euler=True, packages=(),
@@ -196,6 +199,8 @@ def preview(expr, output='png', viewer=None, euler=True, packages=(),
 
         try:
             STDOUT = sys.stdout
+            logger.debug('stdout: '+str(stdout))
+            logger.debug('workdir: '+str(workdir))
             check_output(['latex', '-halt-on-error', '-interaction=nonstopmode',
                           'texput.tex'], cwd=workdir, stderr=STDOUT)
         except CalledProcessError as e:
