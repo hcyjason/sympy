@@ -199,7 +199,7 @@ def preview(expr, output='png', viewer=None, euler=True, packages=(),
 
         try:
             STDOUT = sys.stdout
-            logger.debug('stdout: '+str(stdout))
+            logger.debug('stdout: '+str(STDOUT))
             logger.debug('workdir: '+str(workdir))
             check_output(['latex', '-halt-on-error', '-interaction=nonstopmode',
                           'texput.tex'], cwd=workdir, stderr=STDOUT)
